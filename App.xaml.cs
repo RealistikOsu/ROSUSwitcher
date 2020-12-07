@@ -43,7 +43,7 @@ namespace AkemiSwitcher
             window.btnSwitch.Background = this.FindResource("ButtonStateDisabled") as Brush;
             window.btnSwitch.IsEnabled = false;
             window.btnSwitch.Content = Translation.GetString("info_wait");
-            window.versionText.Content = string.Format("{0} v{1}",
+            window.versionText.Content = string.Format("RealistikOsu Switcher v{1}",
                 System.Reflection.Assembly.GetEntryAssembly().GetName().Name,
                 System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString()
             );
@@ -141,7 +141,7 @@ namespace AkemiSwitcher
                     break;
             }
 
-            uiRef.versionText.Content = string.Format(appendVersion.Length > 0 ? "{0} v{1} - {2}" : "{0} v{1}",
+            uiRef.versionText.Content = string.Format(appendVersion.Length > 0 ? "RealistikOsu Switcher  v{1} - {2}" : "RealistikOsu Switcher  v{1}",
                 System.Reflection.Assembly.GetEntryAssembly().GetName().Name,
                 System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString(),
                 appendVersion

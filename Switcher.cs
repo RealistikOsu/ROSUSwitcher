@@ -36,9 +36,7 @@ namespace AkemiSwitcher
             "c6.ppy.sh",
             "ce.ppy.sh",
             "i.ppy.sh",
-            "delta.ppy.sh",
-            "a.ppy.sh",
-            "s.ppy.sh"
+            "a.ppy.sh"
         };
 #endif
 
@@ -109,7 +107,7 @@ namespace AkemiSwitcher
             JToken token = JObject.Parse(serverOutput);
 
             string target = (string) token.SelectToken("target");
-            if(target == null || !target.Equals("AkemiSwitcher"))
+            if(target == null || !target.Equals("RealistikOsuSwitcher"))
             {
                 OnSwitcherMessage?.Invoke(null, new SwitcherMessageEvent()
                 {
@@ -204,42 +202,6 @@ namespace AkemiSwitcher
             });
 
 #if UPDATABLE || TAMPER_CHECK
-            if (File.Exists(Path.Combine(System.Windows.Forms.Application.StartupPath, "AkemiSwitcher.Update.tmp"))) File.Delete(Path.Combine(System.Windows.Forms.Application.StartupPath, "AkemiSwitcher.Update.tmp"));
-
-            var webClient = new WebClient();
-            string serverOutput = webClient.DownloadString(BuildInfo.UpdateVersionList + "?" + new Random().Next());
-
-            JToken token = JObject.Parse(serverOutput);
-
-            string target = (string) token.SelectToken("target");
-            if(target == null || !target.Equals("AkemiSwitcher"))
-            {
-                OnSwitcherMessage?.Invoke(null, new SwitcherMessageEvent()
-                {
-                    eventType = SwitcherEvent.ServerError
-                });
-            }
-
-            JToken data = token.SelectToken("data");
-            if (data == null)
-            {
-                OnSwitcherMessage?.Invoke(null, new SwitcherMessageEvent()
-                {
-                    eventType = SwitcherEvent.ServerError
-                });
-            }
-
-            JToken versions = data.SelectToken("versions");
-            if(versions == null)
-            {
-                OnSwitcherMessage?.Invoke(null, new SwitcherMessageEvent()
-                {
-                    eventType = SwitcherEvent.ServerError
-                });
-            }
-
-            string latestVersionString = (string) versions.ToList().OrderByDescending(x => int.Parse(((string)x.SelectToken("versionCode")).Replace(".", ""))).First().SelectToken("versionCode");
-            int latestVersion = int.Parse(latestVersionString.Replace(".", ""));
             int currentVersion = int.Parse(System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString().Replace(".", ""));
 
 #if TAMPER_CHECK
@@ -260,15 +222,6 @@ namespace AkemiSwitcher
                 }
             }
 #endif
-
-            if (latestVersion > currentVersion)
-            {
-                MessageBoxResult x = MessageBox.Show(string.Format(((App)App.Current).GetTranslationString("warn_newVersion"), System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString(), latestVersionString), ((App)App.Current).GetTranslationString("title_warn_newVersion"), MessageBoxButton.YesNo, MessageBoxImage.Information);
-                if(x == MessageBoxResult.Yes)
-                {
-                    ((App)App.Current).UpdateMode();
-                }
-            }
 #endif
 
             if (!Utils.IsAdministrator())

@@ -6,20 +6,24 @@
         xmlns:local="clr-namespace:AkemiSwitcher"
         xmlns:p = "clr-namespace:AkemiSwitcher.Properties"
         mc:Ignorable="d"
-        Title="AkemiSwitcher" Height="300" Width="435" Icon="Resources/logo.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Connect to RealistikOsu!" Height="300" Width="435" Icon="Resources/logo.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
     </Window.Resources>
     <Window.Background>
-        <ImageBrush ImageSource="Resources/background.jpg" Stretch="UniformToFill" Opacity="0.365">
+        <ImageBrush ImageSource="Resources/bg.png" Stretch="UniformToFill" Opacity="1">
         </ImageBrush>
     </Window.Background>
     <Grid>
-        <Image Height="130" VerticalAlignment="Top" Source="Resources/logo.png" Margin="0,10,0,0"/>
-        <Label x:Name="versionText" Content="AkemiSwitcher v0.0.0.1 - playing on katakuna." HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White"/>
-        <Button x:Name="btnSwitch" Content="PogChamp" Margin="44,0,45,63" Height="47" FontSize="18" BorderThickness="0" FontStretch="ExtraCondensed" FontWeight="Thin" Style="{StaticResource RoundButton}" Click="Button_Click" IsEnabled="False" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="340"/>
-        <ComboBox x:Name="languageSelectionBox" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="120" SelectionChanged="languageSelectionBox_SelectionChanged">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="24*"/>
+            <ColumnDefinition Width="119*"/>
+        </Grid.ColumnDefinitions>
+        <Image Height="130" VerticalAlignment="Top" Source="Resources/logo.png" Margin="0,10,0,0" Grid.ColumnSpan="2"/>
+        <Label x:Name="versionText" Content="Why are we here... Just to suffer." HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnSwitch" Content="Brrrrrrr" Margin="44,0,45,63" Height="47" FontSize="18" BorderThickness="0" FontStretch="ExtraCondensed" FontWeight="Thin" Style="{StaticResource RoundButton}" Click="Button_Click" IsEnabled="False" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="340" Grid.ColumnSpan="2" FontFamily="Global Sans Serif"/>
+        <ComboBox x:Name="languageSelectionBox" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="120" SelectionChanged="languageSelectionBox_SelectionChanged" Grid.Column="1">
         </ComboBox>
-        <Label x:Name="fallbackLabel" Content="FALLBACK MODE" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Red" Margin="6,0,0,24" Background="White" Height="25" Visibility="Hidden"/>
+        <Label x:Name="fallbackLabel" Content="FALLBACK MODE" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Red" Margin="6,0,0,24" Background="White" Height="25" Visibility="Hidden" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

@@ -7,13 +7,13 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AkemiSwitcher")]
-[assembly: AssemblyDescription("AkemiSwitcher")]
+[assembly: AssemblyTitle("RealistikOsuSwitcher")]
+[assembly: AssemblyDescription("The tool that assists you in switching between osu!bancho and RealistikOsu!")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("osu!katakuna")]
-[assembly: AssemblyProduct("AkemiSwitcher")]
-[assembly: AssemblyCopyright("osu!katakuna")]
-[assembly: AssemblyTrademark("osu!katakuna")]
+[assembly: AssemblyCompany("RealistikOsu!")]
+[assembly: AssemblyProduct("RealistikOsuSwitcher")]
+[assembly: AssemblyCopyright("RealistikOsu")]
+[assembly: AssemblyTrademark("RealistikOsua")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.3.9.8")]
-[assembly: AssemblyFileVersion("1.3.9.8")]
+[assembly: AssemblyVersion("0.1.1")]
+[assembly: AssemblyFileVersion("0.1.1")]

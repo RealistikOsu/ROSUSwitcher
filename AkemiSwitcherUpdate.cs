@@ -48,22 +48,6 @@ namespace AkemiSwitcher
             InitializeComponent();
         }
 
-        private void AkemiSwitcherUpdate_Load(object sender, EventArgs e)
-        {
-            if (File.Exists(updateFilePath)) File.Delete(updateFilePath);
-            ProgressValue = 0;
-            UpdateText = ((App)App.Current).GetTranslationString("info_updating");
-            try
-            {
-                _ = UpdateProcess();
-            } catch (WebException exc)
-            {
-                Console.WriteLine(exc);
-                ServerError();
-                return;
-            }
-        }
-
         void ServerError()
         {
             MessageBox.Show(((App)App.Current).GetTranslationString("message_updateFailed"), ((App)App.Current).GetTranslationString("title_updateFailed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -88,61 +72,6 @@ namespace AkemiSwitcher
                 }
 
                 this.Close();
-            }
-        }
-
-        private async Task UpdateProcess()
-        {
-            JToken latestVersion;
-
-            using (WebClient webClient = new WebClient())
-            {
-
-                statusText.Text = ((App)App.Current).GetTranslationString("info_wait");
-
-                // get the latest version.
-                string serverOutput = webClient.DownloadString(BuildInfo.UpdateVersionList);
-
-                JToken token = JObject.Parse(serverOutput);
-
-                string target = (string)token.SelectToken("target");
-                if (target == null || !target.Equals("AkemiSwitcher"))
-                {
-                    ServerError();
-                    return;
-                }
-
-                JToken data = token.SelectToken("data");
-                if (data == null)
-                {
-                    ServerError();
-                    return;
-                }
-
-                JToken versions = data.SelectToken("versions");
-                if (versions == null)
-                {
-                    ServerError();
-                    return;
-                }
-
-                latestVersion = versions.ToList().OrderByDescending(x => int.Parse(((string)x.SelectToken("versionCode")).Replace(".", ""))).First();
-                webClient.Dispose();
-            }
-
-            if (latestVersion == null)
-            {
-                ServerError();
-                return;
-            }
-
-            // get the latest version.
-            using (WebClient wc = new WebClient())
-            {
-                //wc.DownloadFileCompleted += SwitcherUpdateComplete;
-                wc.DownloadProgressChanged += DownloadProgressCallback;
-
-                await wc.DownloadFileTaskAsync(new Uri((string)latestVersion.SelectToken("downloadURL") + "?" + new Random().Next()), updateFilePath);
             }
         }
 
