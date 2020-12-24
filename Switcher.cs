@@ -36,7 +36,8 @@ namespace AkemiSwitcher
             "c6.ppy.sh",
             "ce.ppy.sh",
             "i.ppy.sh",
-            "a.ppy.sh"
+            "a.ppy.sh",
+            "osu.ppy.sh"
         };
 #endif
 
